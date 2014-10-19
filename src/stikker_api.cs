@@ -60,7 +60,7 @@ namespace Stikked_API
             return j;
            
         }
-        public void CreatePaste(string text,string name,int isPrivate,string lang,string expiry)
+        public string CreatePaste(string text,string name,int isPrivate,string lang,string expiry)
         {
             HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(Domain + "/api/create");
             
@@ -82,7 +82,9 @@ namespace Stikked_API
             }
 
             HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-            
+            HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+            System.IO.StreamReader sr = new StreamReader(response.GetResponseStream());
+            return sr.ReadToEnd(); //Return Paste url
         }
         public string[] getlanglist()
         {
